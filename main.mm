@@ -5,6 +5,8 @@
 
 #include "monster_generated.h"
 
+#define PORT "11080"
+
 enum class Verb {
     kGet,
     kPost
@@ -14,7 +16,7 @@ static std::string request(const std::string &url, const Verb verb = Verb::kGet,
 
 int main() {
     // let's read a buffer!!!
-    auto response = request("http://localhost:11080/");
+    auto response = request("http://localhost:" PORT);
     auto monster = MyGame::Sample::GetMonster(response.c_str());
     std::cout << "pos = (" << monster->pos()->x() << ", " << monster->pos()->y() << ", " << monster->pos()->z() << ")\n";
     std::cout << "hp = " << monster->hp() << std::endl;
@@ -35,7 +37,7 @@ int main() {
     auto mloc = MyGame::Sample::CreateMonster(fbb, &vec, 150, 80, name, inventory, MyGame::Sample::Color_Red);
     MyGame::Sample::FinishMonsterBuffer(fbb, mloc);
     std::string buffer(reinterpret_cast<char *>(fbb.GetBufferPointer()), fbb.GetSize());
-    response = request("http://localhost:11080/", Verb::kPost, &buffer);
+    response = request("http://localhost:" PORT, Verb::kPost, &buffer);
     std::cout << buffer.length();
     std::cout << response;
 

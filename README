@@ -1,6 +1,19 @@
+Files you care about:
+monster.fbs - Flatbuffer schema for the monster table
+http.py - google app engine implementation.
+    "get /" will return monster flatbuffer data,
+    "post /" will print (to the http log) the monster information from the flatbuffer data passed to the body
+main.mm - c++ file which makes calls to the google app engine app
+    make sure you set the PORT found at the top of the file
+
+Things you might need to do:
+
 Generate C++ and Python files:
 ./flatc -c -p monster.fbs
-
 C++ generated file: monster_generated.h
 Pyhton generated files: MyGame/Sample/*.py
 
+Build and run the C++ file:
+./buildAndRunCpp.sh
+
+The flatbuffers directory contains the common flatbuffer code for python and C++.
