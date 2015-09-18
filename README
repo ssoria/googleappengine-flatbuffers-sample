@@ -1,0 +1,6 @@
+Generate C++ and Python files:
+./flatc -c -p monster.fbs
+
+C++ generated file: monster_generated.h
+Pyhton generated files: MyGame/Sample/*.py
+
